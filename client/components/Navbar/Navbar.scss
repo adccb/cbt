@@ -1,0 +1,17 @@
+.navbar {
+  .control {
+    margin-left: 20px;
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      height: 30px;
+      width: 30px;
+    }
+  }
+}

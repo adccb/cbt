@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+@mixin flex($x: false, $y: false) {
+  display: flex;
+  @if($x) { align-items: center; }
+  @if($y) { justify-content: center; }
+}
+
+$nav-height: 100px;
+
+* { transition: all 0.3s; }
+div.flex-container {
+  @include flex(true, true);
+  font-family: 'Open Sans', sans-serif;
+  position: absolute;
+  top: $nav-height;
+  left: 0;
+  height: calc(100vh - #{$nav-height});
+  width: 100vw;
+  & > * { flex: 1; text-align: center; }
+}
+
+div.panel {
+  @include flex(false, true);
+  border-right: 1px #999 solid;
+  min-height: 70vh;
+  &:last-child { border: none; }
+  h3 { font-size: 2em; font-weight: 300; }
+  & > div { width: 50%; }
+}
+
+ul { list-style-type: none; padding: 0; }
+li {
+  @include flex(true, true);
+  &, * { font-size: 1.2em; }
+  padding: 10px 0;
+  border-bottom: 1px #999 solid;
+  height: 90px;
+  box-sizing: border-box;
+
+  &:last-child { border: none; }
+  input {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    transition: all 0.3s;
+    width: 60%;
+    &:focus {
+      box-shadow: 4px 6px 20px 6px rgba(0, 0, 0, 0.11);
+    }
+  }
+
+  input, select {
+    box-shadow: 2px 3px 10px 3px rgba(0, 0, 0, 0.15);
+  }
+}
+
+div.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: $nav-height;
+  padding: 0 5vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  z-index: 5000;
+}
+
+body.night-mode {
+  background-color: #222;
+  color: #dddddd;
+
+  div.panel {
+    @include flex(false, true);
+    border-right: 1px #dddddd solid;
+    &:last-child { border: none; }
+  }
+
+  li {
+    &:last-child { border: none; }
+
+    input { color: #dddddd; &::-webkit-input-placeholder { color: #bbbbbb; } }
+    select, option { color: #bbbbbb; }
+    input, select, option {
+      background-color: #666;
+      border: initial;
+    }
+  }
+
+  div.navbar {
+    background-color: #666;
+  }
+}
