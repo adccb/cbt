@@ -11,6 +11,14 @@ export const Navbar = props => {
       <div className='control'>
         <img onClick={ props.nightMode } src='/img/brightness.svg' alt='' />
       </div>
+
+      <div className='control'>
+        <img onClick={ props.save } src='/img/save.svg' alt='' />
+      </div>
+
+      <div className='control'>
+        <img onClick={ props.clear } src='/img/cancel.svg' alt='' />
+      </div>
     </div>
   )
 }

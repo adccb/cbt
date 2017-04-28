@@ -1,8 +1,14 @@
 import React from 'react'
 import './Distortions.scss'
 
+const distortions = [
+  'all-or-nothing thinking', 'overgeneralization', 'mental filter', 'should statements',
+  'disqualifying the positive', 'jumping to conclusions', 'emotional reasoning',
+  'magnification or minimization', 'labeling and mislabeling', 'personalization',
+]
+
 export const Distortions = props => {
-  const distortionValues = props.list.map((i, index) => (
+  const distortionValues = distortions.map((i, index) => (
     <option value={ index } key={ index }>
       { i }
     </option>
