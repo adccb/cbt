@@ -4,20 +4,16 @@ import './Navbar.scss'
 export const Navbar = props => {
   return(
     <div className='navbar'>
-      <div className='control'>
-        <img onClick={ props.addEntry } src='/img/plus.png' alt='' />
+      <div className='nav-left'>
+        <div className='img-container' onClick={ props.showDrawer }>
+          <img src='/img/hamburger-menu.png' alt='' />
+        </div>
       </div>
 
-      <div className='control'>
-        <img onClick={ props.nightMode } src='/img/brightness.svg' alt='' />
-      </div>
-
-      <div className='control'>
-        <img onClick={ props.save } src='/img/save.svg' alt='' />
-      </div>
-
-      <div className='control'>
-        <img onClick={ props.clear } src='/img/cancel.svg' alt='' />
+      <div className='nav-right'>
+        <div className='img-container' onClick={ props.showHelp }>
+          <img src='/img/see-more.png' alt='' />
+        </div>
       </div>
     </div>
   )

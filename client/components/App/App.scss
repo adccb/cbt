@@ -8,10 +8,9 @@
 
 $nav-height: 100px;
 
-* { transition: all 0.3s; }
+* { transition: all 0.3s; font-family: 'Open Sans', sans-serif; }
 div.flex-container {
   @include flex(true, true);
-  font-family: 'Open Sans', sans-serif;
   position: absolute;
   top: $nav-height;
   left: 0;
@@ -69,30 +68,4 @@ div.navbar {
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
   background-color: white;
   z-index: 5000;
-}
-
-body.night-mode {
-  background-color: #222;
-  color: #dddddd;
-
-  div.panel {
-    @include flex(false, true);
-    border-right: 1px #dddddd solid;
-    &:last-child { border: none; }
-  }
-
-  li {
-    &:last-child { border: none; }
-
-    input { color: #dddddd; &::-webkit-input-placeholder { color: #bbbbbb; } }
-    select, option { color: #bbbbbb; }
-    input, select, option {
-      background-color: #666;
-      border: initial;
-    }
-  }
-
-  div.navbar {
-    background-color: #666;
-  }
 }

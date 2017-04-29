@@ -1,17 +1,34 @@
 .navbar {
-  .control {
-    margin-left: 20px;
-    height: 45px;
-    width: 45px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px #bbb solid;
+  * { flex: 1; }
+
+  .nav-left { text-align: left; }
+  .nav-right {
+    text-align: right;
+    .img-container { float: right; }
+  }
+
+  .img-container {
     cursor: pointer;
-    border-radius: 50px;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(30deg, #FF00A6, #00EEFF, #00FF27);
+    box-shadow: 2px 2px 8px 3px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.15);
+    }
 
     img {
-      height: 30px;
-      width: 30px;
+      max-height: 20px;
+      max-width: 20px;
     }
   }
 }

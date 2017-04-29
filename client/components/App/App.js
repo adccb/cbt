@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.scss'
 
-import { addEntry, editEntry, save, clear } from '../../actions'
+import * as actions from '../../actions'
 import { connect } from 'react-redux'
 
 import { Navbar } from '../Navbar/Navbar'
@@ -9,6 +9,7 @@ import { Thoughts } from '../Thoughts/Thoughts'
 import { Distortions } from '../Distortions/Distortions'
 import { Responses } from '../Responses/Responses'
 import { Definitions } from '../Definitions/Definitions'
+import { Controls } from '../Controls/Controls'
 
 class App extends React.Component {
   constructor(props) {
@@ -37,25 +38,20 @@ class App extends React.Component {
     if(lookup[e.keyCode]) lookup[e.keyCode]()
   }
 
-  nightMode() {
-    const [...classes] = document.body.className.split(' ')
-    if(!classes.includes('night-mode')) {
-      document.body.className = 'night-mode'
-    } else {
-      document.body.className = document.body.className.replace('night-mode', ' ')
-    }
-  }
-
   render() {
-    const def = this.props.def ? <Definitions handleChange={ e => this.handleChange(e) }
-      entries={ this.props.entriesReducer.entries } /> : undefined
-
     return(
       <div onKeyUp={ e => this.handleKeyUp(e) }>
-        <Navbar addEntry={ () => this.props.addEntry() }
-          nightMode={ () => this.nightMode() }
+        <Navbar showDrawer={ () => this.props.showDrawer() }
+          showHelp={ () => this.props.showHelp() }/>
+
+        <Controls shown={ this.props.layoutReducer.controls }
+          hideDrawer={ () => this.props.hideDrawer() }
+          addEntry={ () => this.props.addEntry() }
           clear={ () => this.props.clear() }
           save={ () => this.props.save() } />
+
+        <Definitions shown={ this.props.layoutReducer.help }
+          hideHelp={ () => this.props.hideHelp() } />
 
         <div className='flex-container'>
           <Thoughts handleChange={ e => this.handleChange(e) }
@@ -64,7 +60,6 @@ class App extends React.Component {
             entries={ this.props.entriesReducer.entries } />
           <Responses handleChange={ e => this.handleChange(e) }
             entries={ this.props.entriesReducer.entries } />
-          { def }
         </div>
       </div>
     )
@@ -74,10 +69,14 @@ class App extends React.Component {
 const mapStateToProps = (state, ownProps) => state
 const mapDispatchToProps = dispatch => {
   return {
-    addEntry: () => dispatch(addEntry()),
-    editEntry: item => dispatch(editEntry(item)),
-    save: () => dispatch(save()),
-    clear: () => dispatch(clear()),
+    addEntry: () => dispatch(actions.addEntry()),
+    editEntry: item => dispatch(actions.editEntry(item)),
+    save: () => dispatch(actions.save()),
+    showDrawer: () => dispatch(actions.showDrawer()),
+    hideDrawer: () => dispatch(actions.hideDrawer()),
+    clear: () => dispatch(actions.clear()),
+    showHelp: () => dispatch(actions.showHelp()),
+    hideHelp: () => dispatch(actions.hideHelp()),
   }
 }
 
