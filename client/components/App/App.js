@@ -29,9 +29,22 @@ class App extends React.Component {
   }
 
   handleKeyUp(e) {
+    if(e.target !== document.body) return false
     const lookup = {
       65: () => this.props.addEntry(), // the "a" key
       67: () => this.props.clear(), // the "c" key
+      // the "h" key
+      72: () => {
+        this.props.layoutReducer.help
+          ? this.props.hideHelp()
+          : this.props.showHelp()
+      },
+      // the "m" key
+      77: () => {
+        this.props.layoutReducer.controls
+          ? this.props.hideDrawer()
+          : this.props.showDrawer()
+      },
       83: () => this.props.save() // the "s" key
     }
 

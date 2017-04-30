@@ -7,7 +7,7 @@ export const Definitions = props => {
   return(
     <div className={ classes }>
       <div>
-        <h3>Definitions</h3>
+        <h3>Help</h3>
 
         <ul>
           <li onClick={ props.hideHelp }>hide</li>
