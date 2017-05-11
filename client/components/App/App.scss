@@ -10,17 +10,20 @@ $nav-height: 80px;
 
 * { transition: all 0.3s; font-family: 'Open Sans', sans-serif; }
 div.flex-container {
-  @include flex(true, true);
+  @include flex(false, true);
+  align-items: flex-start;
   position: absolute;
   top: $nav-height;
   left: 0;
   height: calc(100vh - #{$nav-height});
   width: 100vw;
+  overflow-x: scroll;
   & > * { flex: 1; text-align: center; }
 }
 
 div.panel {
   @include flex(false, true);
+  margin: 5vh 0;
   border-right: 1px #999 solid;
   min-height: 70vh;
   &:last-child { border: none; }

@@ -30,25 +30,31 @@ class App extends React.Component {
 
   handleKeyUp(e) {
     if(e.target !== document.body) return false
-    const lookup = {
-      65: () => this.props.addEntry(), // the "a" key
-      67: () => this.props.clear(), // the "c" key
-      // the "h" key
-      72: () => {
+    switch(e.keyCode) {
+      case 78:
+      case 65: { this.props.addEntry() } // "n" or "a"
+      break
+
+      case 67: { this.props.clear() } // "c"
+      break
+
+      case 72: { // "h"
         this.props.layoutReducer.help
           ? this.props.hideHelp()
           : this.props.showHelp()
-      },
-      // the "m" key
-      77: () => {
+      }
+      break
+
+      case 77: { // "m"
         this.props.layoutReducer.controls
           ? this.props.hideDrawer()
           : this.props.showDrawer()
-      },
-      83: () => this.props.save() // the "s" key
-    }
+      }
+      break
 
-    if(lookup[e.keyCode]) lookup[e.keyCode]()
+      case 83: { this.props.save() } // the "s" key
+      break
+    }
   }
 
   render() {
